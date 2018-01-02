@@ -1,14 +1,109 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <title>Linux CHMOD Calculator Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./bootstrap-3.3.7/dist/css/united.min.css" >
+    <title>Linux CHMOD Permissions Calculator Online</title>
   </head>
   <body>
-    <h1>Linux chmod Calculator</h1>
-    <p><small>Simple linux chmod generate tool</small></p>
-    <div class="">
-      
+
+<h1 class="text-center ">Chmod Calculator</h1>
+    <div class="container ">
+      <p class="lead text-center">Simple tool to calculate linux permisions</p>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+          <div class="panel panel-default">
+            <div class="">
+              <table class="table ">
+                <tr>
+                  <td>Mode</td>
+                  <td>User</td>
+                  <td>Group</td>
+                  <td>World</td>
+                </tr>
+                <tr>
+                  <td>Read</td>
+                  <td> <input type="checkbox" class="user" data-perm="4" value="" > </td>
+                  <td> <input type="checkbox" class="group" data-perm="4" value=""> </td>
+                  <td> <input type="checkbox" class="world" data-perm="4" value=""> </td>
+                </tr>
+                <tr>
+                  <td>Write</td>
+                  <td> <input type="checkbox" class="user" data-perm="2" value=""> </td>
+                  <td> <input type="checkbox" class="group" data-perm="2" value=""> </td>
+                  <td> <input type="checkbox" class="world" data-perm="2" value=""> </td>
+                </tr>
+                <tr>
+                  <td>Execute</td>
+                  <td> <input type="checkbox" class="user" data-perm="1" value=""> </td>
+                  <td> <input type="checkbox" class="group" data-perm="1" value=""> </td>
+                  <td> <input type="checkbox" class="world"  data-perm="1" value=""> </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="text-center h3">
+            Permissions:       <span class="user_output">0</span><span class="group_output">0</span><span class="world_output">0</span>
+          </div>
+          <div class="small">
+            Contributed by <a href="https://wwww.picxy.com">Picxy.com</a>
+          </div>
+        </div>
+
+      </div>
+
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+    $(function() {
+
+      $("input[type=checkbox]").change(function(e){
+        var checkbox = $(this);
+
+        if (checkbox.hasClass('user')) {
+            var userPermission = 0;
+            $(".user").each(function(e, v){
+              if ($(v).is(":checked")) {
+                userPermission = userPermission + parseInt($(v).data('perm'));
+              }
+
+            });
+            $(".user_output").text(userPermission);
+        }
+
+        if (checkbox.hasClass('group')) {
+          var groupPermission = 0;
+          $(".group").each(function(e, v){
+            if ($(v).is(":checked")) {
+              groupPermission = groupPermission + parseInt($(v).data('perm'));
+            }
+
+          });
+          $(".group_output").text(groupPermission);
+        }
+
+        if (checkbox.hasClass('world')) {
+          var worldPermission = 0;
+          $(".world").each(function(e, v){
+            if ($(v).is(":checked")) {
+              worldPermission = worldPermission + parseInt($(v).data('perm'));
+            }
+
+          });
+          $(".world_output").text(worldPermission);
+
+        }
+
+
+      })
+    })
+
+    </script>
   </body>
 </html>
